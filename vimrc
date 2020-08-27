@@ -19,7 +19,7 @@ Plugin 'tpope/vim-fugitive'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
+" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -42,6 +42,17 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
+" CUSTOM PLUGINS
+
+Plugin 'rip-rip/clang_complete'
+Plugin 'kopischke/vim-fetch'
+Plugin 'preservim/nerdtree'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+
+" C++ CODE COMPLETION STUFF
+
 let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 let g:clang_use_library = 1
 let g:clang_user_options='|| exit 0'
@@ -49,12 +60,42 @@ let g:clang_close_preview = 1
 let g:clang_snippets = 1
 let g:clang_trailing_placeholder = 1
 
-Plugin 'rip-rip/clang_complete'
-Plugin 'kopischke/vim-fetch'
-Plugin 'preservim/nerdtree'
-Plugin 'octol/vim-cpp-enhanced-highlight'
 
-map <S-j> 10j
-map <S-k> 10k
+" CUSTOM STUFF
+
+map <S-j> 8j
+map <S-k> 8k
 
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+syntax on
+highlight LineNr ctermfg=7 ctermbg=8
+set number
+
+autocmd VimEnter * NERDTree
+
+" CUSTOM STATUS LINE
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\
