@@ -17,7 +17,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -26,6 +26,16 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+
+
+Plugin 'rip-rip/clang_complete'
+Plugin 'kopischke/vim-fetch'
+Plugin 'preservim/nerdtree'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'tomasiser/vim-code-dark'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,36 +53,52 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
-" CUSTOM PLUGINS
-
-Plugin 'rip-rip/clang_complete'
-Plugin 'kopischke/vim-fetch'
-Plugin 'preservim/nerdtree'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-
-
 " C++ CODE COMPLETION STUFF
 
-let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+" let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+let g:clang_library_path = '/usr/lib/libclang.so'
 let g:clang_use_library = 1
 let g:clang_user_options='|| exit 0'
 let g:clang_close_preview = 1
 let g:clang_snippets = 1
 let g:clang_trailing_placeholder = 1
 
+highlight Pmenu ctermbg=gray guibg=gray
+set shortmess+=c
 
 " CUSTOM STUFF
 
 map <S-j> 8j
 map <S-k> 8k
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
 
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+let g:airline_theme='minimalist'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+colorscheme codedark
 syntax on
 highlight LineNr ctermfg=7 ctermbg=8
 set number
 
+set colorcolumn=120
+highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
+set cursorline
+
+highlight ExtraWhitespace ctermbg=lightred guibg=lightred
+match ExtraWhitespace /\s\+$/
+
+" NERDTree stuff
+
 autocmd VimEnter * NERDTree
+let NERDTreeMapActivateNode='<space>'
+let g:NERDTreeWinSize=40
 
 " CUSTOM STATUS LINE
 
