@@ -27,15 +27,15 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-
-Plugin 'rip-rip/clang_complete'
+Bundle "gilligan/vim-lldb"
+Plugin 'valloric/youcompleteme'
 Plugin 'kopischke/vim-fetch'
-Plugin 'preservim/nerdtree'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'tomasiser/vim-code-dark'
+Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
+Plugin 'vifm/vifm.vim'
+Plugin 'kana/vim-altr'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,11 +52,12 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
 " C++ CODE COMPLETION STUFF
-
-" let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-let g:clang_library_path = '/usr/lib/libclang.so'
+if has('macunix')
+   let g:clang_library_path = system('echo $(find /Applications/Xcode.app/Contents/Developer/Toolchains/ -name "libclang.dylib" 2> /dev/null)')
+else
+   let g:clang_library_path = system('echo $(find /usr/ -name "libclang.so" 2> /dev/null)')
+endif
 let g:clang_use_library = 1
 let g:clang_user_options='|| exit 0'
 let g:clang_close_preview = 1
@@ -68,60 +69,52 @@ set shortmess+=c
 
 " CUSTOM STUFF
 
-map <S-j> 8j
-map <S-k> 8k
+set hidden " enable swapping away from unsaved buffers
+
+" Windows style saving
+map <C-s> <ESC>:w<cr>
+imap <C-s> <ESC>:w<cr>
+
+" Navigate vim windows
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+" Navigate buffers
+map bp :bp<cr>
+map bn :bn<cr>
+map bd :bn<cr>:bd!#<cr>
 
 let g:airline_theme='minimalist'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = ' '
 
-colorscheme codedark
+colorscheme gruvbox
+set bg=dark
 syntax on
 highlight LineNr ctermfg=7 ctermbg=8
 set number
 
-set colorcolumn=120
-highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
 set cursorline
 
+" Highlight trailing whitespaces
 highlight ExtraWhitespace ctermbg=lightred guibg=lightred
 match ExtraWhitespace /\s\+$/
 
-" NERDTree stuff
+set tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
 
-autocmd VimEnter * NERDTree
-let NERDTreeMapActivateNode='<space>'
-let g:NERDTreeWinSize=40
+" Swap between header and source files (C/C++)
+map <C-p> <Plug>(altr-forward)
+map <C-g> :YcmCompleter GoToDeclaration<cr>
+map <C-f> :YcmCompleter GoToReferences<cr>
 
-" CUSTOM STATUS LINE
+" Show symbol documentation with Shift-k
+nmap K <Plug>(YCMHover)
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
+" Vifm stuff
+map vv :EditVifm<cr>
+map vs :VsplitVifm<cr>
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\
