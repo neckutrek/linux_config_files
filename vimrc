@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+" filetype off                  " required
+filetype plugin indent on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -27,7 +28,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Bundle "gilligan/vim-lldb"
+" Bundle "gilligan/vim-lldb"
 Plugin 'valloric/youcompleteme'
 Plugin 'kopischke/vim-fetch'
 Plugin 'octol/vim-cpp-enhanced-highlight'
