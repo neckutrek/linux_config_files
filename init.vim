@@ -23,7 +23,7 @@ nmap <Leader>gj :diffget //3<CR>
 nmap <Leader>gf :diffget //2<CR>
 
 let g:airline#extensions#fugitiveline#enabled = 1
-nmap <Leader>gb :call gitblame#echo()<CR>
+autocmd CursorMoved <buffer> call gitblame#echo()
 
 " Coc, coc-clangd
 let $COCCONFIG = $HOME . '/.config/nvim/coc.vim'
