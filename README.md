@@ -16,7 +16,7 @@
     brew install npm
 
     :checkhealth
-    :CocInstall coc-json coc-tsserver
+    :CocInstall coc-json coc-tsserver coc-clangd
 
 Make sure you have latest pynvim python package installed!
 Make sure you have latest neovim npm package installed!
@@ -32,4 +32,4 @@ Add symbolic link to clangd in /usr/local/bin
     python3 -m pip install --upgrade pynvim
     sudo npm install -g neovim
 
-    :CocInstall coc-json coc-tsserver
+    :CocInstall coc-json coc-tsserver coc-clangd
