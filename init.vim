@@ -18,6 +18,7 @@ nnoremap <Space> <Nop>
 
 " vim-fugitive Git integration
 nmap <Leader>gs :G<CR>
+nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gj :diffget //3<CR>
 nmap <Leader>gf :diffget //2<CR>
 
