@@ -2,15 +2,25 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'clangd/coc-clangd'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 Plug 'mg979/vim-studio-dark'
+Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
 Plug 'airblade/vim-gitgutter'
 Plug 'zivyangll/git-blame.vim'
+
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 nnoremap <Space> <Nop>
@@ -23,7 +33,7 @@ nmap <Leader>gj :diffget //3<CR>
 nmap <Leader>gf :diffget //2<CR>
 
 let g:airline#extensions#fugitiveline#enabled = 1
-autocmd CursorMoved * call gitblame#echo()
+"autocmd CursorMoved * call gitblame#echo()
 
 " Coc, coc-clangd
 let $COCCONFIG = $HOME . '/.config/nvim/coc.vim'
@@ -55,8 +65,7 @@ let g:airline#extensions#tabline#left_alt_sep = '  '
 let g:airline_theme='luna'
 
 " Color theme
-colorscheme vsdark
-let g:Vsd.contrast = 2
+colorscheme Atelier_DuneDark
 syntax on
 highlight LineNr ctermfg=244 ctermbg=233
 set number
@@ -66,7 +75,7 @@ highlight ExtraWhitespace ctermbg=lightred guibg=lightred
 match ExtraWhitespace /\s\+$/
 
 " Tabstop
-set tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " File system naviagtion
 nmap <Leader>fo :FuzzyOpen<CR>
