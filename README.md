@@ -36,6 +36,7 @@ Add symbolic link to clangd in /usr/local/bin
 
 ## Raspbian
 You have to build neovim from source, the Raspbian package is out-dated!
+
     sudo apt-get install git
     sudo apt-get install libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
     git clone https://github.com/neovim/neovim.git
