@@ -33,3 +33,19 @@ Add symbolic link to clangd in /usr/local/bin
     sudo npm install -g neovim
 
     :CocInstall coc-json coc-tsserver coc-clangd
+
+## Raspbian
+You have to build neovim from source, the Raspbian package is out-dated!
+    sudo apt-get install git
+    sudo apt-get install libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+    git clone https://github.com/neovim/neovim.git
+    cd neovim
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+
+    sudo apt-get install fzy ripgrep llvm nodejs npm
+    python3 -m pip install --upgrade pynvim
+    sudo npm install -g neovim
+    :CocInstall coc-json coc-tsserver coc-clangd
+
+    :checkhealth
