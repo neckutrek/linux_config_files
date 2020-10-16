@@ -26,6 +26,8 @@ call plug#end()
 nnoremap <Space> <Nop>
 :let mapleader = " "
 
+nnoremap <ESC> <ESC><ESC>:noh<CR><ESC>
+
 " vim-fugitive Git integration
 nmap <Leader>gs :G<CR>
 nmap <Leader>gc :Gcommit<CR>
