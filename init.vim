@@ -47,6 +47,12 @@ endif
 map <C-s> <ESC>:w<cr>
 imap <C-s> <ESC>:w<cr>
 
+" Vertical split stuff
+nnoremap <Leader>te <C-w>v<C-w>w :term<CR>i
+tnoremap <C-w>w <C-\><C-n><C-w>w
+tnoremap <C-w><C-w> <C-\><C-n><C-w>w
+nnoremap <Leader>co :vert bo copen<CR>
+
 " Navigate vim windows
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
@@ -56,8 +62,8 @@ nnoremap <C-H> <C-W>h
 " Navigate buffers
 nmap <Leader>bp :bp<cr>
 nmap <Leader>bn :bn<cr>
-nmap <Leader>bd :bn<cr>:bd#<cr>
-nmap <Leader>bD :bn<cr>:bd!#<cr>
+nmap <Leader>bd :bp<cr>:bd#<cr>
+nmap <Leader>bD :bp<cr>:bd!#<cr>
 
 " Airline
 let g:airline_powerline_fonts = 1
