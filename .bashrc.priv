@@ -4,6 +4,9 @@ alias gs="git status"
 function ga {
 	git add $@
 }
+function gd {
+	git diff $@
+}
 
 # Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
