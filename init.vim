@@ -38,6 +38,12 @@ tnoremap <ESC> <C-\><C-n>
 " File system naviagtion
 nnoremap <C-p> :FuzzyOpen<CR>
 
+function! PwdHere_impl()
+  let path=expand('%:p:h')
+  execute("cd ".path)
+endfunction
+command PwdHere :call PwdHere_impl()
+
 " Silver Searcher Ag search in all files under cwd
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -85,32 +91,32 @@ let g:netrw_fastbrowse = 0
 
 " Add functionality to follow filepath with line and column number in previous
 " window
-:function! GetFileLineNumber()
-  :let word=expand("<cWORD>")
-  ":echo "word     = ".word
+function! GetFileLineNumber()
+  let word=expand("<cWORD>")
+  "echo "word     = ".word
 
-  :let filepath=expand("<cfile>")
-  :if filepath[0:0]!="/" | let filepath=substitute(word,"\\(/.*\\):.*","\\1","") | endif
-  ":echo "filepath = ".filepath
-  :if filepath[0:0]!="/"
-    :echo "Not a valid file path under cursor"
-    :return
-  :endif
+  let filepath=expand("<cfile>")
+  if filepath[0:0]!="/" | let filepath=substitute(word,"\\(/.*\\):.*","\\1","") | endif
+  "echo "filepath = ".filepath
+  if filepath[0:0]!="/"
+    echo "Not a valid file path under cursor"
+    return
+  endif
 
-  :let line=substitute(word,"^[^:]*:\\([^:]*\\).*$","\\1","")
-  :if line!="".str2nr(line) | let line="1" | endif
-  ":echo "line     = ".line
+  let line=substitute(word,"^[^:]*:\\([^:]*\\).*$","\\1","")
+  if line!="".str2nr(line) | let line="1" | endif
+  "echo "line     = ".line
 
-  :let column=substitute(word,"^[^:]*:[^:]*:\\([^:]*\\).*$","\\1","")
-  :if column!="".str2nr(column) | let column="1" | endif
-  ":echo "column  = ".column
+  let column=substitute(word,"^[^:]*:[^:]*:\\([^:]*\\).*$","\\1","")
+  if column!="".str2nr(column) | let column="1" | endif
+  "echo "column  = ".column
 
-  :wincmd p
-  ":echo filepath." ".line." ".column
-  :execute("e ".filepath)
-  :call cursor(line,column)
-  :wincmd p
-:endfunction
+  wincmd p
+  "echo filepath." ".line." ".column
+  execute("e ".filepath)
+  call cursor(line,column)
+  wincmd p
+endfunction
 
 nnoremap <F8> :call GetFileLineNumber()<CR>
 
