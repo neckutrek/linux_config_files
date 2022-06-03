@@ -46,6 +46,8 @@ nnoremap <C-s> :Ack
 
 " Settings for vim-cmake
 let g:cmake_root_markers = ['CMakeLists.txt']
+let g:cmake_jump=1
+nnoremap <F10> :CMakeOpen<CR> :set rnu<CR> :wincmd p<CR>
 
 let g:airline#extensions#fugitiveline#enabled = 1
 
