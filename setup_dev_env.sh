@@ -6,7 +6,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt update
 sudo apt upgrade
 
-sudo apt install tmux git curl powerline apt-file mlocate htop tree silversearcher-ag ack
+sudo apt install tmux git curl powerline apt-file mlocate htop tree silversearcher-ag ack ranger
 sudo snap install neovim -classic
 
 sudo apt install binutils gcc clang cmake
