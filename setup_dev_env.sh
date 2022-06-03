@@ -40,6 +40,10 @@ git config --global user.name 'neckutrek'
 # Setup tmux
 cp .tmux.conf ~/.tmux.conf
 
+# Setup ranger
+mkdir -p ~/.config/ranger
+cp rc.conf ~/.config/ranger/rc.conf
+
 # Neovim setup
 pip install --upgrade pynvim
 sudo npm install -g neovim
