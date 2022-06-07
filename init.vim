@@ -30,6 +30,8 @@ nnoremap <Space> <Nop>
 nnoremap <ESC> <ESC><ESC>:noh<CR><ESC>
 tnoremap <ESC> <C-\><C-n>
 
+set nowrap
+
 " File system naviagtion
 nnoremap <C-p> :FuzzyOpen<CR>
 
@@ -107,3 +109,7 @@ endfunction
 
 nnoremap <F8> :call GetFileLineNumber()<CR>
 
+
+lua << EOF
+require("diffview_conf")
+EOF
