@@ -7,12 +7,14 @@ sudo apt update
 sudo apt upgrade
 
 sudo apt install tmux git curl powerline apt-file mlocate htop tree silversearcher-ag ack ranger
-sudo snap install neovim -classic
+sudo snap install nvim -classic
 
-sudo apt install binutils gcc clang cmake
+sudo apt install binutils gcc clang cmake cmake-curses-gui
 sudo apt install maven openjdk-8-dbg openjdk-8-jdk-headless
-sudo apt install pip
-sudo apt install fzy ripgrep nodejs npm
+sudo apt install python3 pip
+sudo apt install fzy ripgrep npm
+
+sudo snap install node --classic
 
 curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
@@ -32,6 +34,7 @@ source ~/.bashrc
 
 # Swap escape and caps lock, and let apple keyboard fn keys be normal
 echo "setxkbmap -option caps:swapescape" >> ~/.profile
+setxkbmap -option caps:swapescape
 echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
 sudo update-initramfs -u -k all
 
@@ -52,10 +55,13 @@ sudo npm install -g neovim
 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim/lua
 cp ./init.vim ~/.config/nvim/init.vim
 cp ./coc.vim ~/.config/nvim/coc.vim
+cp ./diffview_conf.lua ~/.config/nvim/lua/diffview_conf.lua
 
 nvim -c ':PlugInstall' +qall
 nvim -c ':CocInstall coc-json coc-tsserver coc-clangd' +qall
 
+# JetBrains vim rc
+cp .ideavimrc ~/.ideavimrc
