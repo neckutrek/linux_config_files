@@ -30,8 +30,10 @@ echo "source ~/.bashrc.priv" >> ~/.bashrc
 cp ./.bashrc.priv ~/
 source ~/.bashrc
 
-# Swap escape and caps lock
+# Swap escape and caps lock, and let apple keyboard fn keys be normal
 echo "setxkbmap -option caps:swapescape" >> ~/.profile
+echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
+sudo update-initramfs -u -k all
 
 # Setup git
 git config --global user.email '<>'
