@@ -32,6 +32,9 @@ tnoremap <ESC> <C-\><C-n>
 
 set nowrap
 
+" Coc
+source ~/.config/nvim/coc.vim
+
 " File system naviagtion
 nnoremap <C-p> :FuzzyOpen<CR>
 

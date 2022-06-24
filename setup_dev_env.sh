@@ -9,7 +9,7 @@ sudo apt upgrade
 sudo apt install tmux git curl powerline apt-file mlocate htop tree silversearcher-ag ack ranger
 sudo snap install nvim -classic
 
-sudo apt install binutils gcc clang cmake cmake-curses-gui
+sudo apt install binutils gcc clang clangd cmake cmake-curses-gui
 sudo apt install maven openjdk-8-dbg openjdk-8-jdk-headless
 sudo apt install python3 pip
 sudo apt install fzy ripgrep npm
